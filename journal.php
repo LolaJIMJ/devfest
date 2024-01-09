@@ -80,7 +80,7 @@
                         <textarea name="journal_content" id="journal_content" class="form-control" rows="7" placeholder="Type Message Here" maxlength="350"></textarea>
                     </div>
                     <div class="py-2">
-                        <p><i class="fa-solid fa-image"></i> <input type="file" name="journal_img" id="journal_img"></p>
+                        <input type="file" name="journal_img" id="journal_img" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -107,7 +107,7 @@
                         <textarea name="journal_content" id="journal_content" class="form-control" rows="7" placeholder="Type Message Here" maxlength="350"></textarea>
                     </div>
                     <div class="py-2">
-                        <p><i class="fa-solid fa-image"></i> <input type="file" name="journal_img" id="journal_img"></p>
+                        <input type="file" name="journal_img" id="journal_img" class="form-control">
                     </div>
                     <div>
                       <input type="hidden" name="journal_id" id="journalId">

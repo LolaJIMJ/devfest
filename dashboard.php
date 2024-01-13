@@ -12,6 +12,7 @@
 
     $cat = $category->fetch_category();
     $goals = $goal->fetch_goals($user_id);
+    
 
 ?>
 <body>
@@ -32,34 +33,70 @@
                 <?php
                     require_once('session_messages.php');
                     // print_r($goals);
+                    if (!empty($goals)) { 
+                   foreach($goals as $g){
+
+                  
                 ?>
                <div>
+                    <?php
+                        if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Walk Time") {
+                           
+                    ?>
                     <span class="fs-3"><i class="fa-solid fa-person-walking"></i> 3 Hours</span>
                     <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         <div class="progress-bar bg-primary" style="width: 25%">25%</div>
                     </div>
+                    <?php
+                     }
+                    ?>
                </div>
 
                <div>
+                    <?php
+                        if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Sleep Time") {
+                    ?>
                     <span class="fs-3"><i class="fa-solid fa-bed"></i> 6 Hours</span>
                     <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         <div class="progress-bar bg-success" style="width: 25%">25%</div>
                     </div>
+                    <?php
+                     }
+                    ?>
                 </div>
 
                 <div>
+                    <?php
+                        if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Exercise Time") {
+                    ?>
                     <span class="fs-3"><i class="fa-solid fa-dumbbell"></i> 2 Hours</span>
                     <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         <div class="progress-bar bg-danger" style="width: 25%">25%</div>
                     </div>
+                    <?php
+                     }
+                    ?>
                 </div>
 
                 <div>
-                    <span class="fs-3"><i class="fa-solid fa-glass-water"></i> 2 Litres</span>
+                    <?php
+                        if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Water Taken") {
+                            $activity = $goal->fetch_goals_cat($g['goal_id']);
+                            $percentage = $activity['activity_amt']/$activity['goal_target']*100 ."%";
+                            // print_r($activity);
+                    ?>
+                    <span class="fs-3"><i class="fa-solid fa-glass-water"></i> <?php echo $activity['activity_amt'] ?> Litres</span>
                     <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+                        <div class="progress-bar bg-warning" style="width: 25%"><?php echo $percentage; ?></div>
                     </div>
+                    <?php
+                     }
+                    ?>
                 </div>
+                <?php
+                     }
+                    }
+                ?>
             </div>
         </div>
         <div class="row py-3 justify-content-center">
@@ -81,6 +118,7 @@
                     </thead>
                     <tbody>
                         <?php
+                            if (!empty($goals)) { 
                             foreach($goals as $goal){
                         ?>
 
@@ -90,13 +128,13 @@
                             <td><?php echo $goal['goal_target'] ?></td>
                             <td><?php echo $goal['cat_unit'] ?></td>
                             <?php
-                                if ($goal['goal_status'] == 1) {
+                                if (isset($goal['goal_status'])) {
                             ?>
-                                <td class="text-warning">Active</td>  
+                                <td class="text-success"><?php echo $goal['goal_status']; ?></td>  
                             <?php
                                 } else {
                             ?>
-                                    <td class="text-success">Completed</td>  
+                                    <td class="text-danger">Failed</td>  
                             <?php
                                 }
                                 
@@ -106,11 +144,15 @@
 
                         <?php
                             }
+                        }
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
+        <?php
+            include_once('exercise.php');
+        ?>
     </main>
    </div>
 

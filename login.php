@@ -15,7 +15,6 @@
                     <form action="process/process_login.php" method="post">
                         <input type="email" name="mail" id="mail" class="form-control border-dark my-2" placeholder="Email Address">
                         <input type="password" name="pass" id="pass" class="form-control border-dark my-2" placeholder="Password">
-                       <p class="text-start"><a href="#">Forgot Password?</a></p>
                         <button type="submit" class="btn btn-primary col-12">Login</button>
                     </form>
                 </div>

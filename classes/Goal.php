@@ -96,6 +96,19 @@
             }
             
         }
+
+        public function update_status($id)
+        {
+            $query = "UPDATE goals SET goal_status=? WHERE goal_id=?";
+            $stmt = $this->dbconn->prepare($query);
+            $updated = $stmt->execute(['Completed',$id]);
+
+            if ($updated) {
+                return $updated;
+            } else{
+                return false;
+            }
+        }
        
     }
 

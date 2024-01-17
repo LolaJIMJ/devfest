@@ -14,7 +14,7 @@
     $cat = $category->fetch_category();
     $goals = $goal->fetch_goals_cat($goal_id);
 
-    $percentage = $goals['activity_amt']/$goals['goal_target']*100 ." %";
+    $percentage = $goals['activity_amt']/$goals['goal_target']*100;
 
 ?>
 <body>
@@ -32,6 +32,7 @@
     <main>
     <div class="row py-1 align-items-center justify-content-center">
         <div class="col-md-6">
+           
             <?php
                     require_once('session_messages.php');
                     // print_r($goals);
@@ -45,8 +46,8 @@
                 ?>
                      <div>
                     <span class="fs-3"><i class="fa-solid fa-glass-water"></i> <?php echo $goals['activity_amt'] . ' ' . $goals['cat_unit']?></span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-warning" style="width:100%"><?php echo $percentage ?></div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning" style="width:<?php echo $percentage ."%" ?>"><?php echo $percentage ."%" ?></div>
                     </div>
                 </div>
                 <?php
@@ -58,8 +59,8 @@
                 ?>
                      <div>
                     <span class="fs-3"><i class="fa-solid fa-bed"></i> <?php echo $goals['activity_amt'] . ' ' . $goals['cat_unit']?></span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-success" style="width: 25%"><?php echo $percentage ?></div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: <?php echo $percentage ."%" ?>"><?php echo $percentage ."%" ?></div>
                     </div>
                 </div>
                 <?php
@@ -71,8 +72,8 @@
                 ?>
                       <div>
                     <span class="fs-3"><i class="fa-solid fa-dumbbell"></i> <?php echo $goals['activity_amt'] . ' ' . $goals['cat_unit']?></span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-danger" style="width: 25%"><?php echo $percentage ?></div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: <?php echo $percentage ."%" ?>"><?php echo $percentage ."%" ?></div>
                     </div>
                 </div>
                 <?php
@@ -85,8 +86,8 @@
                 ?>
                        <div>
                     <span class="fs-3"><i class="fa-solid fa-person-walking"></i> <?php echo $goals['activity_amt'] . ' ' . $goals['cat_unit']?></span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-primary" style="width: 25%"><?php echo $percentage ?></div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-primary" style="width: <?php echo $percentage ."%" ?>"><?php echo $percentage ."%" ?></div>
                     </div>
                </div>
                 </div>

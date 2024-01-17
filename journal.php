@@ -45,7 +45,7 @@
                    <img src="uploads/<?php echo $journal['journal_img']; ?>" class="card-img-top" alt="...">
                    <div class="card-body">
                        <p class="card-text journalContent"><?php echo $journal['journal_content']; ?></p>
-                       <button class="btn btn-primary editjournal" data-bs-toggle="modal" data-bs-target="#editJournal" value="<?php echo $journal['journal_id'];?>"> Edit</button>
+                       <button class="btn btn-primary editjournal" data-bs-toggle="modal" data-bs-target="#editJournal" value="<?php echo $journal['journal_id'];?>" data-location="<?php echo $journal['journal_content']; ?>"> Edit</button>
                        <a href="delete_journal.php?journal_id=<?php echo $journal['journal_id']; ?>" class="btn btn-danger">Delete</a>
                        <p class="mt-2 card-text"><?php echo $journal['time_written']; ?></p>
                    </div>
@@ -104,7 +104,7 @@
                   <form action="process/process_editjournal.php" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                     <div>
-                        <textarea name="journal_content" id="journal_content" class="form-control" rows="7" placeholder="Type Message Here" maxlength="350"></textarea>
+                        <textarea name="journal_content" id="journal_contents" class="form-control" rows="7" placeholder="Type Message Here" maxlength="350"></textarea>
                     </div>
                     <div class="py-2">
                         <input type="file" name="journal_img" id="journal_img" class="form-control">
@@ -131,10 +131,11 @@
             $(document).ready(function(){
               $('.editjournal').click(function(){
                 var id = $(this).val();
-                var content = $('.journalContent').text();
+                var content = $(this).attr('data-location');
                 $('#journalId').val(id);
                 // alert(content);
-                // $('#journal_content').val(content);
+                $('#journal_contents').html(content);
+
               });
             });
           </script>

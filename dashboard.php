@@ -41,11 +41,13 @@
                <div>
                     <?php
                         if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Walk Time") {
+                            $activity = $goal->fetch_goals_cat($g['goal_id']);
+                            $percentage = $activity['activity_amt']/$activity['goal_target']*100;
                            
                     ?>
-                    <span class="fs-3"><i class="fa-solid fa-person-walking"></i> 3 Hours</span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-primary" style="width: 25%">25%</div>
+                    <span class="fs-3"><i class="fa-solid fa-person-walking"></i> <?php echo $activity['activity_amt'] ?> Hours</span>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-primary" style="width: <?php echo $percentage ."%"; ?>"><?php echo $percentage ."%"; ?></div>
                     </div>
                     <?php
                      }
@@ -55,10 +57,12 @@
                <div>
                     <?php
                         if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Sleep Time") {
+                            $activity = $goal->fetch_goals_cat($g['goal_id']);
+                            $percentage = $activity['activity_amt']/$activity['goal_target']*100;
                     ?>
-                    <span class="fs-3"><i class="fa-solid fa-bed"></i> 6 Hours</span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-success" style="width: 25%">25%</div>
+                    <span class="fs-3"><i class="fa-solid fa-bed"></i> <?php echo $activity['activity_amt'] ?> Hours</span>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: <?php echo $percentage ."%"; ?>"><?php echo $percentage ."%"; ?></div>
                     </div>
                     <?php
                      }
@@ -68,10 +72,12 @@
                 <div>
                     <?php
                         if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Exercise Time") {
+                            $activity = $goal->fetch_goals_cat($g['goal_id']);
+                            $percentage = $activity['activity_amt']/$activity['goal_target']*100;
                     ?>
-                    <span class="fs-3"><i class="fa-solid fa-dumbbell"></i> 2 Hours</span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-danger" style="width: 25%">25%</div>
+                    <span class="fs-3"><i class="fa-solid fa-dumbbell"></i> <?php echo $activity['activity_amt'] ?> Hours</span>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: <?php echo $percentage ."%"; ?>"><?php echo $percentage ."%"; ?></div>
                     </div>
                     <?php
                      }
@@ -82,12 +88,12 @@
                     <?php
                         if ($g['goal_date_set'] == date("Y-m-d") && $g['cat_name'] == "Water Taken") {
                             $activity = $goal->fetch_goals_cat($g['goal_id']);
-                            $percentage = $activity['activity_amt']/$activity['goal_target']*100 ."%";
+                            $percentage = $activity['activity_amt']/$activity['goal_target']*100;
                             // print_r($activity);
                     ?>
                     <span class="fs-3"><i class="fa-solid fa-glass-water"></i> <?php echo $activity['activity_amt'] ?> Litres</span>
-                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-warning" style="width: 25%"><?php echo $percentage; ?></div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning" style="width: <?php echo $percentage ."%"; ?>"><?php echo $percentage ."%"; ?></div>
                     </div>
                     <?php
                      }

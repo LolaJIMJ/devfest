@@ -190,7 +190,7 @@
                 </div>
                 <div>
                     <label for="goal_target">Target (in digits)</label>
-                    <input type="number" name="goal_target" id="goal_target" class="form-control">
+                    <input type="text" name="goal_target" id="goal_target" class="form-control">
                 </div>
             </div>
             <div class="modal-footer">

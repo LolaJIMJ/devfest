@@ -11,6 +11,10 @@
 
     $journals = $journal->fetch_journal($user_id);
 
+    if (isset($_SESSION['result'])) {
+      $search_result = $_SESSION['result'];
+    }
+
 ?>
 <body>
    <div class="container-fluid" id="fluid">
@@ -26,17 +30,22 @@
     </head>
     <main class="mb-5">
       <div class="row justify-content-center">
-          <div class="col-md-3">
-          <?php
+          <div class="col-md-3 pb-3">
+            <form action="process/process_search.php" method="post" class="d-flex">
+              <input class="form-control my-2" type="search" placeholder="Search" name="search_journal" value="<?php if(isset($_SESSION['search'])){ echo $_SESSION['search'];} ?>">
+              &nbsp;
+              <input type="submit" value="search" class="btn btn-primary" name="btn_search">
+            </form>
+          <?php 
           require_once('session_messages.php');
-          // print_r($journals);
+          // print_r($search_result);
         ?>  
           </div>
       </div>
        <div class="row">
 
        <?php
-          if (isset($journals['0'])) {
+          if (!isset($search_result)&&isset($journals[0])) {
           foreach($journals as $journal){
         ?>
            <div class="col-md-3 pb-2">
@@ -46,13 +55,30 @@
                    <div class="card-body">
                        <p class="card-text journalContent"><?php echo $journal['journal_content']; ?></p>
                        <button class="btn btn-primary editjournal" data-bs-toggle="modal" data-bs-target="#editJournal" value="<?php echo $journal['journal_id'];?>" data-location="<?php echo $journal['journal_content']; ?>"> Edit</button>
-                       <a href="delete_journal.php?journal_id=<?php echo $journal['journal_id']; ?>" class="btn btn-danger">Delete</a>
+                       <a class="btn btn-danger delete" data-location="<?php echo $journal['journal_id']; ?>">Delete</a>
                        <p class="mt-2 card-text"><?php echo $journal['time_written']; ?></p>
                    </div>
                  </div>
            </div>
         <?php
            }
+          } elseif (isset($search_result)) {
+            foreach($search_result as $result){
+        ?>
+            <div class="col-md-3 pb-2">
+               
+               <div class="card" style="width: 18rem;">
+                   <img src="uploads/<?php echo $result['journal_img']; ?>" class="card-img-top" alt="...">
+                   <div class="card-body">
+                       <p class="card-text journalContent"><?php echo $result['journal_content']; ?></p>
+                       <button class="btn btn-primary editjournal" data-bs-toggle="modal" data-bs-target="#editJournal" value="<?php echo $result['journal_id'];?>" data-location="<?php echo $result['journal_content']; ?>"> Edit</button>
+                       <a class="btn btn-danger delete" data-location="<?php echo $result['journal_id']; ?>">Delete</a>
+                       <p class="mt-2 card-text"><?php echo $result['time_written']; ?></p>
+                   </div>
+                 </div>
+           </div>
+        <?php
+            }
           }
         ?>
       
@@ -136,6 +162,15 @@
                 // alert(content);
                 $('#journal_contents').html(content);
 
+              });
+
+              $('.delete').click(function(){
+                var deleted = confirm("Are you sure you want to delete journal?");
+                var id = $(this).attr('data-location');
+                // alert(id);
+                if (deleted == true) {
+                    $(this).attr('href','delete_journal.php?journal_id='+id);
+                }
               });
             });
           </script>

@@ -124,7 +124,7 @@
                 </div>
                 <div>
                     <label for="goal_target">Record</label>
-                    <input type="number" name="goal_target" id="goal_target" class="form-control">
+                    <input type="text" name="goal_target" id="goal_target" class="form-control">
                 </div>
                 <div>
                     <input type="hidden" name="goal_id" value="<?php echo $goal_id ?>">
@@ -155,7 +155,7 @@
       <div class="modal-body">
         <div>
             <label for="new_target">Set New target</label>
-            <input type="number" name="new_target" id="new_target" class="form-control">
+            <input type="text" name="new_target" id="new_target" class="form-control">
         </div>
         <div class="py-2">
             <label for="cat_unit">Unit</label>

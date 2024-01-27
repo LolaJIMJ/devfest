@@ -40,17 +40,19 @@
                 
             </div>
             <div>
+               <div>
                 <?php
-                    if (isset($profile_picture)) {
-                ?>
-                      <p class="dp"><img src="uploads/<?php echo $profile_picture; ?>" alt="" class="img-fluid" id="dp"></p>  
-                <?php
-                    } else {
-                ?>
-                      <p class="dp"><img src="assets/images/dummy.jpg" alt="" class="img-fluid" id="dp"></p>  
-                <?php
-                    }  
-                ?>
+                        if (isset($profile_picture)) {
+                    ?>
+                        <p class="dp"><img src="uploads/<?php echo $profile_picture; ?>" alt="" class="img-fluid" id="dp"></p>  
+                    <?php
+                        } else {
+                    ?>
+                        <p class="dp"><img src="assets/images/dummy.jpg" alt="" class="img-fluid" id="dp"></p>  
+                    <?php 
+                        }  
+                    ?>
+               </div>
                   <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <i class="fa-solid fa-user-pen"></i> Edit Profile Picture
 </button>
@@ -91,12 +93,12 @@
                     <div class="row">
                         <div class="col">
                             <label for="weight">Weight (kg)</label>
-                            <input type="number" name="weight" id="weight" class="form-control" value="<?php echo $weight; ?>">
+                            <input type="text" name="weight" id="weight" class="form-control" value="<?php echo $weight; ?>">
                             <p id="feedback" class="text-danger"></p>
                         </div>
                         <div class="col">
                             <label for="height">Height (Inches)</label>
-                            <input type="number" name="height" id="height" class="form-control" value="<?php echo $height; ?>">
+                            <input type="text" name="height" id="height" class="form-control" value="<?php echo $height; ?>">
                         </div>
                     </div>
                     <div class="row py-3">

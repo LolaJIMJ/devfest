@@ -108,6 +108,19 @@
             
         }
 
+        public function search_journal($content,$id)
+        {
+            $sql = "SELECT * FROM journal WHERE journal_content LIKE '%' ? '%' AND userId=?";
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute([$content,$id]);
+            $search = $stmt->fetchAll(PDO::FETCH_ASSOC);
+           if ($search) {
+            return $search;
+           } else {
+                return false;
+           }
+        }
+
     }
 
     $journal = new Journal();

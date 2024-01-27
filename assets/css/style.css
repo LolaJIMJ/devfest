@@ -41,9 +41,9 @@ a{
     width: 100%;
 }
 
-#dp{
+.dp{
     border-radius: 50%;
-}
+} 
 
 .entry {
     margin-bottom: 20px;

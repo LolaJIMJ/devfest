@@ -30,7 +30,7 @@
                 <h2>Profile</h2>
             </div>
             <div class="col-md-2 ps-md-4">
-                <a href="logout.php" class="btn btn-danger">Logout</a>
+                <a class="btn btn-danger" id="logout">Logout</a>
             </div>
         </div>
     </head>
@@ -93,6 +93,19 @@
       </div>  
     </main>
    </div>
+
+   <script src="assets/css/jquery.min.js"></script>
+   <script>
+        $(document).ready(function(){
+            $('#logout').click(function(){
+            var out = confirm("Are you sure you want to logout?");
+            if (out == true) {
+                $(this).attr('href','logout.php');
+            }
+          });
+        })
+   </script>
+
    
 </body>
 </html>

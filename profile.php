@@ -15,7 +15,9 @@
     $height = $u['user_height'];
 
     $dp = $user->fetch_dp($user_id);
+   if (isset($dp['picture_file'])) {
     $profile_picture = $dp['picture_file'];
+   }
 
 
 ?>

@@ -1,32 +1,27 @@
 <?php
+ session_start();
+  require_once "../classes/utilities.php";
+  require_once "../classes/User.php";
 
-error_reporting(E_ALL);
-session_start();
-require_once('../classes/User.php');
-require_once('../classes/utilities.php');
-
-if ($_POST) {
-    $email = sanitizer($_POST['mail']);
-    $password = $_POST['pass'];
-    
-    $result = $user->login($email,$password);
-
-    if ($result) {
-        print_r($result);
-        $_SESSION['user_online'] = $result['user_id'];
-        header('location:../dashboard.php');
+  $user = new User;
+  if(isset($_POST['btnlogin'])){  //form was submitted
+    //retrieve and sanitized form data
+    $email = sanitizer($_POST['email']);
+    $pwd = sanitizer($_POST['pwd']);
+    //we want to call the method that will check if the credentials are valid
+    $data = $user->login($email, $pwd);
+    if($data){   //log in
+        $_SESSION['useronline'] = $data;
+        header("location:../dashboard.php");
         exit();
     }else{
-        $_SESSION['error_message'] = "Incorrect email or password";
-        header('location:../login.php');
-        exit();
+        header("location:../loginpage.php");
     }
 
-    
-} else {
-    $_SESSION['error_message'] = "Please login to continue";
-    header('location:../login.php');
+  }else{  //direct visit
+    $_SESSION['errormsg'] = "Please complete the form";
+    header("location:../loginpage.php");
     exit();
-}
 
+  }
 ?>

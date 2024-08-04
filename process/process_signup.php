@@ -5,52 +5,41 @@
     require_once('../classes/User.php');
     require_once('../classes/utilities.php');
 
-    if ($_POST) {
-        $username = sanitizer($_POST['user']);
-        $email = sanitizer($_POST['mail']);
-        $password = $_POST['password'];
-        $confirm_password = $_POST['cpassword'];
-        
-        if (empty($username)) {
-            $_SESSION['error_message'] = "Username cannot be empty";
-            header('location:../signup.php');
-            exit();
-        } 
-        if (empty($email)) {
-            $_SESSION['error_message'] = "Please input email address";
-            header('location:../signup.php');
-            exit();
-        } 
-        if (empty($password) || empty($confirm_password)) {
-            $_SESSION['error_message'] = "Please choose a password";
-            header('location:../signup.php');
-            exit();
-        }
-        if ($password != $confirm_password) {
-            $_SESSION['error_message'] = "Password must be the same";
-            header('location:../signup.php');
-            exit();
-        }
+    $user = new User;
 
-        $result = $user->sign_up($username,$email,$password,$confirm_password);
+    #check if the form was submitted or the user visits this page directly
+    if(isset($_POST['btnregister'])){
 
-        if ($result) {
-            $_SESSION['success_message'] = "Account created successfully please comlete your profile";
-            $_SESSION['user_online'] = $result;
-            header('location:../editprofile.php');
+        #retrieve form data and sanitize
+        $firstname = sanitizer ($_POST['fname']);
+        $lastname = sanitizer($_POST['lname']);
+        $email = sanitizer($_POST['email']);
+        $pwd = sanitizer($_POST['pwd']);
+
+        if(empty($firstname) || empty($lastname) || empty($email) || empty($pwd)){
+            $_SESSION['errormsg'] = "All fields are required";
+            header("location:../register.php");
             exit();
+
         }else{
-            $_SESSION['error_message'] = "An error occured, Please try again";
-            header('location:../signup.php');
-            exit();
+          $chk =  $user->insert_user($firstname,$lastname,$email,$pwd);
+            if ($chk){
+                $_SESSION['useronline'] = $chk;
+                header("location:../dashboard.php");
+            }else{
+                header("location:../register.php");
+            }
+
         }
 
         
-    } else {
-        $_SESSION['error_message'] = "Please signup to continue";
-        header('location:../signup.php');
+        #try it out, fill the form and submit, then check your db to confirm the data has been inserted
+
+    }else{
+        $_SESSION['errormsg'] = "Please pass through the door and complete the form";
+        header("location:../register.php");
         exit();
     }
-    
+
 
 ?>

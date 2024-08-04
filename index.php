@@ -1,92 +1,136 @@
 <?php
-
-    error_reporting(E_ALL);
-    require_once('partials/head.php');
-
+ session_start();
+ require_once "partials/header.php";
 ?>
-<body>
-    
-    <div class="container-fluid">
-        <head>
-            <div class="row py-3" id="mynav">
-                <div class="col">
-                    <nav class="d-flex justify-content-around">
-                        <div class="col ps-4">
-                            <a class="navbar-brand fs-2" href="index.php"><i class="fa-solid fa-person-running"></i> WellPath</a>
-                        </div>
-                        <div class="col-md-2 pe-1">
-                            <a href="login.php" class="btn btn-primary">Login</a>
-                            <a href="signup.php" class="btn btn-info">Sign Up</a>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </head>
+ <!-- from here till topmost top as header.php-->
 
-        <main>
-            <div class="row justify-content-center pt-5 text-light animate__animated animate__slideInDown" id="hero">
-                <div class="col-md-6 text-center pt-4">
-                    <h3 class="fs-1 mt-5"><i class="fa-solid fa-person-running"></i></h3>
-                    <h1>WellPath</h1>
-                    <h3>Attain your fitness aspirations with WellPath</h3>
-                    <p class="fs-5 mb-3">Embrace a healthier lifestyle effortlessly with the all-in-one app designed to support your wellness journey</p>
-                    <a href="signup.php" class="btn btn-info col-6">Get started today</a>
-                    <div class="my-5 py-4"><a href="#enter" class="fs-4"><i class="fa-solid fa-circle-chevron-down fa-lg" style="color: #251f51;"></i></a></div>
-                </div>
-            </div>
-            <div class="row justify-content-center py-5 bg-primary text-light" id="enter">
-                <div class="col-md-6 text-center pt-3">
-                    <h4>Fitness Objectives for Enhanced Well-being</h4>
-                    <p class="fs-5">Regular physical activity is crucial for maintaining good health, but what amount and type of exercise is optimal for you?</p>
-                    <p class="mt-3 fs-5">The pursuit of personal goals can be an enriching and rewarding endeavor, leading to a more fulfilling and successful life. However, achieving these objectives often requires a shift in mindset and a willingness to adopt new habits that align with your aspirations. Embarking on this journey of self-improvement necessitates a comprehensive approach that encompasses understanding effective strategies, tracking progress, and making necessary adjustments along the way.</p>
-                    <p class="mt-3 fs-5">The journey of habit formation and goal attainment is an ongoing process that requires dedication, flexibility, and a willingness to embrace continuous learning. By understanding the science behind habit formation, employing effective strategies, tracking your progress, and incorporating fitness into your routine, you can successfully transform your habits, achieve your goals, and lead a more fulfilling and successful life.</p>
-                </div>
-            </div>
-            <div class="row ps-5 mt-2 align-items-center animate__animated animate__slideInLeft">
-                <div class="col-md-6 py-5">
-                    <h4>Personalized coaching for your unique needs and goals</h4>
-                    <p>Achieve your fitness goals seamlessly with customized coaching and actionable insights derived from your health and activity history. WellPath effortlessly simplifies progress tracking and activity monitoring right from your phone.</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="assets/images/fitness.png" alt="jogging" class="img-fluid">
-                </div>
-            </div>
-            <div class="row justify-content-end align-items-center animate__animated animate__slideInRight">
-                <div class="col-md-4">
-                    <img src="assets/images/journaling.png" alt="journaling" class="img-fluid">
-                </div>
-                <div class="col-md-6 pe-5 py-5">
-                    <h4>Transform every physical activity into a stepping stone towards your goals</h4>
-                    <p>WellPath helps you make the most of every movement, from vigorous workouts to leisurely strolls, by seamlessly integrating with your favorite apps and health devices. This comprehensive approach provides a holistic view of your health and ensures that every step you take counts.</p>
-                </div>
-            </div>
-            <div class="row justify-content-end bg-primary text-light py-5 mb-3">
-                <div class="col-md-6 py-5">
-                    <h3 class="my-3">Get Fit on any device</h3>
-                    <a href="login.php" class="btn btn-light mt-2">Login</a>
-                    &nbsp;
-                    <a href="signup.php" class="btn btn-info mt-2">Sign Up</a>
-                </div>
-            </div>
-        </main>
 
-        <footer>
-            <div class="row bg-dark text-light py-2">
-                <div class="col ps-4">
-                    <a class="footer-text fs-2 pt-3" href="index.php"> WellPath</a>
-                </div>
-                <div class="col pt-3 text-center">
-                    <a href="policydocs/privacy.txt" class="footer-text" target="_blank">Privacy</a>
-                    &nbsp;
-                    <a href="policydocs/terms.txt" class="footer-text" target="_blank">Terms</a>
-                </div>
-                <dic class="col pt-3 text-center">
-                    <p>&copy;2023</p>
-                </dic>
-            </div>
-        </footer>
+<div class="container col-md-10 py-5">
+  
+  <!--menu for logged in user-->
+    <?php require_once "partials/menu.php"; ?>
+  
+    <!--menu for logged in user-->
+  <?php
+    if(isset($_SESSION['useronline'])){
+      require_once "partials/menu.php";
+    }
+  ?>
+
+ <!--banner-->
+    <div class="row flex-lg-row-reverse align-items-center g-5" >
+      <div class="col-12 col-sm-5 col-lg-5">
+        <video width="100%" autoplay muted loop>
+          <source src="assets/static/videos/hero.mp4" type="video/mp4">
+        </video>
+        <!-- <img src="assets/static/images/sw.png" class="d-block mx-lg-auto img-fluid" alt="Developer Sample"> -->
+      </div>
+      <div class="col-lg-7 col-sm-7">
+        <h1 class="display-5 fw-bold lh-1 mb-3">DEV FEST 2024</h1>
+        <p class="lead">Introducing the largest Developer's Festival across sub-Sahara Africa! <br>A full-stack, tech-obsessed festival full of fun, code-loving humans who share and learn together. </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href= "register.php" class="btn custom-btn px-4 me-md-2">Register Me</a>
+          <a href="loginpage.php" class="btn btn-outline-dark noround px-4">Login</a>
+        </div>
+      </div>
     </div>
+<!--end banner-->
 
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+
+<!--The home page can populate the following for other contents like partner hotel-->
+
+
+<!--breakout session-->
+<div class="layout" id="breakout">
+  
+    <div class="container-fluid px-4 pt-5" id="custom-cards" style="background-color: white;">
+     <div style="width:86%; margin:auto">
+      <h2 class="pb-2 border-bottom heading-text">Popular Breakout Sessions</h2>
+  
+      <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+       
+      <div class="col">
+         <img src="assets/static/images/3.png" class="img-fluid bk" alt="">    
+         <div class="deets"><h6>Session and Cookies </h6>
+          <p><i>Senior Category</i> <a href="">120 Seats</a></p>                  
+         </div>  
+         </div>
+  
+        <div class="col">
+          <img src="assets/static/images/4.png" class="img-fluid bk" alt="">  
+           <div class="deets"><h6>Authentication  </h6>
+            <p><i>Senior Category</i> <a href="">34 Seats</a></p>    
+        
+         </div>         
+         </div>
+         
+         <div class="col">
+          <img src="assets/static/images/11.png" class="img-fluid bk" alt="">  
+           <div class="deets"><h6>The Low Hanging Fruits </h6>
+            <p><i>Junior Category</i> <a href="">80 Seats</a></p>   
+        
+         </div>         
+         </div>
+         
+         <div class="col">
+          <img src="assets/static/images/4.png" class="card-img-top bk" alt=""> 
+           <div class="deets"><h6>The Day is Bright </h6>
+            <p><i>Intermediate Category</i> <a href="">80 Seats</a></p>    
+        
+         </div>          
+         </div>
+            
+      </div>
+    </div>
+    </div> 
+</div>
+<!--end breakout session--> 
+
+<!--conversation call to action-->
+<div class="container mt-5" id="conversation">
+      <h3 class="pb-2 border-bottom heading-text my-4">Join the Conversation</h3>
+      <div class="row justify-content-around mx-0">
+        <div class="col-md-6 mb-4">
+          <img src="assets/static/images/senior_dev.png" alt="image1" class="img-fluid">
+          
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-12">
+              <img src="assets/static/images/junio.png" alt="image2" class="img-fluid">
+             
+            </div>
+            <div class="col-12 my-4">
+              <img src="assets/static/images/inter.png" alt="image3" class="img-fluid">
+          
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="row justify-content-center my-4 ">
+      <div class="col-12 text-center">
+        <a href="conversation.php" class="noround btn btn-outline-dark">MAKE A POST</a>
+      </div>
+</div>
+<!--end conversation call to action-->
+
+
+
+
+<!--partner hotel-->
+
+<?php
+include_once "partials/hotel.php";
+?>
+
+ <!--end partner hotel-->
+
+ <!--- End of Extra independent sessions that home page may wish to populate-->
+
+ <!-- From here till end as footer.php-->
+ <?php
+   require_once "partials/footer.php";
+ ?>
+<!-- FOOTER -->
